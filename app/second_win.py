@@ -15,24 +15,21 @@ class TestWin(QWidget):
         self.connects()
         self.show()
     def timer_event(self):
-        self.time = self.time.addSecs(1)
-        if self.time.toString("hh:mm:ss") == self.endtime:
+        self.time = self.time.addSecs(-1)
+        if self.time.toString("hh:mm:ss") == '00:00:00':
             self.timer.stop()
             self.time = QTime(0, 0, 0)
         self.timer_text.setText(self.time.toString("<b>hh:mm:ss<b>"))
 
     def test1_start(self):
-        self.time = QTime(0, 0, 0)
+        self.time = QTime(0, 0, 15)
         self.timer.start(1000)
-        self.endtime = '00:00:15'
     def test2_start(self):
-        self.time = QTime(0, 0, 0)
+        self.time = QTime(0, 0, 45)
         self.timer.start(1000)
-        self.endtime = '00:00:45'
     def test3_start(self):
-        self.time = QTime(0, 0, 0)
+        self.time = QTime(0, 1, 0)
         self.timer.start(1000)
-        self.endtime = '00:01:00'
 
     def set_appear(self):
         self.setWindowTitle(txt_title)
