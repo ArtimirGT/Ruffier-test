@@ -5,9 +5,7 @@ from PyQt5 import QtGui
 from PyQt5.QtCore import Qt, QTimer, QTime
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout, QLineEdit
 
-app = QApplication([])
-
-class TestWin(QWidget):
+class testWin(QWidget):
     def __init__(self):
         super().__init__()
         self.set_appear()
@@ -83,6 +81,3 @@ class TestWin(QWidget):
         self.r_index = str(4 * (int(self.test1_line.text()) + int(self.test2_line.text()) + int(self.test3_line.text()))/10)
         self.final = finalWin()
         self.final.get_index(self.r_index)
-        
-test = TestWin()
-app.exec_()
