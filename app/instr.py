@@ -20,7 +20,7 @@ txt_instruction = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,\
     tortor posuere ac. Nibh ipsum consequat nisl vel pretium lectus quam id \
     leo. Nisi porta lorem mollis aliquam ut porttitor leo a diam. Tincidunt \
     vitae semper quis lectus.'
-txt_title = 'Тест Руфье'
+txt_title = 'Здоровье'
 txt_name = 'Введите Ф.И.О:'
 txt_hintname = "ФИО"
 txt_hintage = "0"
@@ -44,6 +44,18 @@ txt_starttest2 = '  Начать делать приседания    '
 txt_starttest3 = '  Начать делать финальный тест    '
 
 txt_age = 'Полных лет:'
-txt_finalwin = ''
-txt_index = 'Индекс Руфье'
-txt_workheart = ''
+txt_finalwin = 'Результаты'
+txt_index = 'Индекс Руфье: '
+txt_workheart = 'Работоспособность сердца: '
+
+def get_result(r_index):
+    if r_index <= 0:
+        return 'Атлетическое сердце'
+    elif r_index <= 5:
+        return 'Выше среднего'
+    elif r_index <= 10:
+        return 'Средний резерв'
+    elif r_index <= 15:
+        return 'Сердечная недостаточность средней степени'
+    else:
+        return 'Сердечная недостаточность высокой степени'
