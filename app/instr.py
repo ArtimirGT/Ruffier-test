@@ -40,14 +40,26 @@ txt_finalwin = 'Результаты'
 txt_index = 'Индекс Руфье: '
 txt_workheart = 'Работоспособность сердца: '
 
-def get_result(r_index):
-    if r_index <= 0:
-        return 'Вы умерли, пульса нет'
-    elif r_index <= 5:
-        return 'Выше среднего'
-    elif r_index <= 10:
-        return 'Средний резерв'
-    elif r_index <= 15:
-        return 'Сердечная недостаточность средней степени'
+def get_offset(age):
+    if age <= 8:
+        return 6
+    elif age <= 10:
+        return 4.5
+    elif age <= 12:
+        return 3
+    elif age <= 14:
+        return 1.5
     else:
-        return 'Сердечная недостаточность высокой степени'
+        return 0
+
+def get_result(r_index, offset):
+    if r_index >= 15 + offset:
+        return 'Низкий'
+    elif 11 + offset <= r_index <= 14.9 + offset:
+        return 'Удовлетворительный'
+    elif 6 + offset <= r_index <= 10.9 + offset:
+        return 'Средний'
+    elif 0.5 + offset <= r_index <= 5.9 + offset:
+        return 'Выше среднего'
+    else:
+        return 'Высокий'

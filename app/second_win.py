@@ -74,8 +74,9 @@ class testWin(QWidget):
         self.l_line = QVBoxLayout()
         self.l_line.addWidget(QLabel(txt_name), alignment=Qt.AlignLeft)
         self.l_line.addWidget(QLineEdit(txt_hintname), alignment=Qt.AlignLeft)
+        self.age_line = QLineEdit(txt_hintage)
         self.l_line.addWidget(QLabel(txt_age), alignment=Qt.AlignLeft)
-        self.l_line.addWidget(QLineEdit(txt_hintage), alignment=Qt.AlignLeft)
+        self.l_line.addWidget(self.age_line, alignment=Qt.AlignLeft)
 #test1
         self.l_line.addWidget(QLabel(txt_test1), alignment=Qt.AlignLeft)
         self.test1_but = QPushButton(txt_starttest1)
@@ -112,4 +113,4 @@ class testWin(QWidget):
         self.hide()
         self.r_index = str(4 * (int(self.test1_line.text()) + int(self.test2_line.text()) + int(self.test3_line.text()))/10)
         self.final = finalWin()
-        self.final.get_index(self.r_index)
+        self.final.get_index(self.r_index, self.age_line.text())

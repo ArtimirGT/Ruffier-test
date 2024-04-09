@@ -7,13 +7,15 @@ class finalWin(QWidget):
     def __init__(self):
         super().__init__()
         self.r_index = '0'
+        self.age = 0
         self.set_appear()
         self.initUI()
         self.show()
-    def get_index(self, r_index):
+    def get_index(self, r_index, age):
         self.r_index = r_index
+        self.age = age
         self.index_text.setText(txt_index + self.r_index)
-        self.result_text.setText(txt_workheart + get_result(float(self.r_index)))
+        self.result_text.setText(txt_workheart + get_result(float(self.r_index), get_offset(int(self.age))))
     def set_appear(self):
         self.setWindowTitle(txt_finalwin)
         self.resize(win_width, win_height)
@@ -22,7 +24,7 @@ class finalWin(QWidget):
         self.main_layout = QVBoxLayout()
         self.index_text = QLabel(txt_index + self.r_index)
         self.main_layout.addWidget(self.index_text, alignment= Qt.AlignCenter)
-        self.result_text = QLabel(txt_workheart + get_result(float(self.r_index)))
+        self.result_text = QLabel(txt_workheart + get_result(float(self.r_index), get_offset(int(self.age))))
         self.main_layout.addWidget(self.result_text, alignment= Qt.AlignCenter)
         self.setLayout(self.main_layout)
     
