@@ -1,6 +1,7 @@
 # напиши здесь код для второго экрана приложения
 from final_win import *
 from instr import *
+from PyQt5 import QtCore, QtMultimedia
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt, QTimer, QTime
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout, QLineEdit
@@ -8,6 +9,13 @@ from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QLa
 class testWin(QWidget):
     def __init__(self):
         super().__init__()
+        self.x = 1
+        self.playing = 0
+        self.player1 = QtMultimedia.QMediaPlayer()
+        self.player2 = QtMultimedia.QMediaPlayer()
+        self.micro = QtMultimedia.QMediaPlayer()
+        self.microwave = QtCore.QUrl.fromLocalFile('microwave.mp3')
+        self.tick_sound = QtCore.QUrl.fromLocalFile('single-tick-sound.mp3')
         self.set_appear()
         self.initUI()
         self.connects()
@@ -17,27 +25,51 @@ class testWin(QWidget):
         if self.time.toString("hh:mm:ss") == '00:00:00':
             self.timer.stop()
             self.time = QTime(0, 0, 0)
+            self.micro.play()
+            self.playing = 0
         self.timer_text.setText(self.time.toString("<b>hh:mm:ss<b>"))
+        if self.x == 1 and self.playing:
+            self.player1.play()
+            self.x *= -1
+        elif self.playing:
+            self.player2.play()
+            self.x *= -1
 
     def test1_start(self):
         self.time = QTime(0, 0, 15)
         self.timer.start(1000)
+        self.playing = 1
+        self.x = 1
+        self.player2.play()
+        self.timer_text.setText(self.time.toString("<b>hh:mm:ss<b>"))
     def test2_start(self):
         self.time = QTime(0, 0, 45)
         self.timer.start(1000)
+        self.playing = 1
+        self.x = 1
+        self.player2.play()
+        self.timer_text.setText(self.time.toString("<b>hh:mm:ss<b>"))
     def test3_start(self):
         self.time = QTime(0, 1, 0)
         self.timer.start(1000)
+        self.playing = 1
+        self.x = 1
+        self.player2.play()
+        self.timer_text.setText(self.time.toString("<b>hh:mm:ss<b>"))
 
     def set_appear(self):
         self.setWindowTitle(txt_title)
         self.resize(win_width, win_height)
         self.move(win_x, win_y)
     def initUI(self):
+        self.player1.setMedia(QtMultimedia.QMediaContent(self.tick_sound))
+        self.player2.setMedia(QtMultimedia.QMediaContent(self.tick_sound))
+        self.micro.setMedia(QtMultimedia.QMediaContent(self.microwave))
         self.timer = QTimer()
         self.time = QTime(0, 0, 0)
         self.timer.timeout.connect(self.timer_event)
         self.h_line = QHBoxLayout()
+        self.h_line.setContentsMargins(20, 20, 20, 20)
         self.r_line = QVBoxLayout()
         self.l_line = QVBoxLayout()
         self.l_line.addWidget(QLabel(txt_name), alignment=Qt.AlignLeft)
